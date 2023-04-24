@@ -22,7 +22,7 @@ puts "Initialisation du joueur en cours ...."
 puts 
 puts player.show_state # Affiche les informations du joueur (nom et points de vie)
 
-# Initialisation des ennemis
+# Initialisation des ennemisles
 player1 = Player.new("josianne",10)
 player2 = Player.new("josé",10)
 
