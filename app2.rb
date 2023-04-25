@@ -82,40 +82,38 @@ while player.life_points > 0 && !enemies.empty? # Tant que le joueur est en vie 
       player.attacks(player2) # Le joueur attaque l'ennemi
       puts
       puts player2.show_state # Affiche les informations de l'ennemi
-    
-    elsif player1.life_points <= 0 # Si l'ennemi est mort
-      puts "#{player1.name} est dead !"
-      enemies.delete(player1) # Retire l'ennemi du tableau des ennemis
-  
+    elsif player2.life_points <= 0 # Si l'ennemi est mort
+      puts "#{player2.name} est dead !"
+      enemies.delete(player2) # Retire l'ennemi du tableau des ennemis
     else # Si l'ennemi n'existe plus
-      puts "#{player1.name} est déjà mort !"
+      puts "#{player2.name} est déjà mort !"
     end
 
-    else # sinon le choix n'est pas valide
-      puts "Tu n'as pas choisi d'action valide."    
-    end
-  #le joueur 1 attaque le luser si il est en vie 
-  if player1.life_points > 0
-    puts player1.attacks(player)
-    puts
-    puts player.show_state
+  else # sinon le choix n'est pas valide
+    puts "Tu n'as pas choisi d'action valide."    
   end
 
-  # le joueur 2 attaque l'user s'il est en vie
-  if player2.life_points > 0
-    puts player2.attacks(player)
-    puts
-    puts player.show_state
+  # Les deux ennemis attaquent simultanément le joueur
+  enemies.each do |enemy|
+    if enemy.life_points > 0
+      enemy.attacks(player)
+      puts
+      puts player.show_state
+    end
+  end
+
+  # Vérification si le joueur est toujours en vie
+  if player.life_points <= 0
+    puts "Tu as perdu ! GAME OVER"
+    break # Sort de la boucle si le joueur est mort
   end
 end
 
 # affichage du résultat de la partie
-if player1.life_points <= 0
-  puts "#{player1.name} est GAME OVER !"
-elsif player2.life_points <= 0
-  puts "#{player2.name} est GAME OVER !"
+if player1.life_points <= 0 && player2.life_points <= 0
+  puts "BRAVO ! TU AS GAGNE !"
 else
-  puts "#{player.name} est GAME OVER !"
+  puts "Loser ! Tu as perdu !"
 end
 
 binding.pry
