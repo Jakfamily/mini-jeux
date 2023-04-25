@@ -66,6 +66,7 @@ class Game
   # On définit la méthode kill_player qui supprime un joueur du tableau enemies
   def kill_player(player)
     @enemies_in_sight.delete(player)
+    puts "#{player.name} a été éliminé !"
   end
 
   # On définit la méthode show_players qui affiche l'état du joueur humain et le nombre d'ennemis restants
@@ -127,6 +128,7 @@ class Game
     @enemies_in_sight.each do |enemy|
       if is_still_ongoing?
         enemy.attacks(@human_player)
+        kill_player(player) if enemy.life_points <= 0
       end
     end
   end
