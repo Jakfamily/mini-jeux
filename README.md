@@ -1,2 +1,3 @@
 # Mini-jeux
-This is a Ruby program
+
+ceci est un jeux de combat tour par tour

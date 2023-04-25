@@ -28,18 +28,22 @@ class HumanPlayer < Player # Déclare une sous-classe de Player appelée HumanPl
     end
   end
 
-  def search_health_pack # Cherche un pack de santé
+  def search_health_pack
     health_pack = rand(1..6) # Génère un nombre aléatoire entre 1 et 6
-    if health_pack == 1 # Si le nombre est 1
-      puts "Tu n'as rien trouvé..." # Affiche un message d'échec
-    elsif health_pack.between?(2, 5) # Sinon, si le nombre est compris entre 2 et 5
+  
+    # On utilise une structure de contrôle switch case pour gérer les différents cas de figure en fonction du nombre généré aléatoirement
+    case health_pack
+    when 1
+      puts "Tu n'as rien trouvé..."
+    when 2..5 # Si le nombre est compris entre 2 et 5
       @life_points += 50 # Ajoute 50 points de vie
       @life_points = 100 if @life_points > 100 # Si les points de vie dépassent 100, les met à 100
-      puts "Bravo, tu as trouvé un pack de +50 points de vie !" # Affiche un message de réussite
-    else # Sinon
+      puts "Bravo, tu as trouvé un pack de +50 points de vie !"
+    else # Si le nombre est égal à 6
       @life_points += 80 # Ajoute 80 points de vie
       @life_points = 100 if @life_points > 100 # Si les points de vie dépassent 100, les met à 100
-      puts "Waow, tu as trouvé un pack de +80 points de vie !" # Affiche un message de réussite
+      puts "Waow, tu as trouvé un pack de +80 points de vie !"
     end
   end
+  
 end
